@@ -46,7 +46,7 @@ class Agricultora(val parcelas: MutableList<Parcela>) { // MINIMIZAR MUTABILIDAD
     }
 
   fun plantarEstrategicamente(planta: Planta) { // SE PODRIA HABER RESUELTO DE FORMA MAS SIMPLE
-    val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas }!! //MUTACION // ACOPLAMIENTO = it.cantidadPlantas accede a una variable de la parcela , lo que no es recomendado
+    val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas }!!
     laElegida.plantas.add(planta)
   }
 }
