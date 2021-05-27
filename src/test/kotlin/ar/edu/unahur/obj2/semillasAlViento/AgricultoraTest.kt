@@ -10,7 +10,7 @@ class AgricultoraTest:DescribeSpec ({
     describe("Una Agricultora"){
         val unaParcela = Parcela(5,3,8) //3 plantas - 1 espacio
         val unaParcelaGrande = Parcela(2,3,8) //5 plantas - 2 espacios
-        val otraParcelaGrande = Parcela(5,4,8) //4 plantas - 1 espacio
+        val otraParcelaGrande = Parcela(5,4,8) //4 plantas - 2 espacio
 
         val plantaDeSoja1 = Soja(1998,2.0,false)
         val plantaDeSoja2 = Soja(1997,3.0,true)
@@ -28,7 +28,7 @@ class AgricultoraTest:DescribeSpec ({
 
         otraParcelaGrande.plantar(plantaDeSoja3)
         otraParcelaGrande.plantar(plantaDeSoja5)
-        otraParcelaGrande.plantar(plantaDeSoja1)
+        //otraParcelaGrande.plantar(plantaDeSoja1)
 
         val listaDeParcelas = mutableListOf(unaParcela,unaParcelaGrande,otraParcelaGrande)
         val agricultora = Agricultora(listaDeParcelas)
@@ -39,7 +39,7 @@ class AgricultoraTest:DescribeSpec ({
         }
 
         it("Plantar estrategicamente una planta"){
-            val plantaEspecial = Menta(2008,1.0)
+            val plantaEspecial = Menta(2008,2.0)
             agricultora.plantarEstrategicamente(plantaEspecial)
 
             unaParcelaGrande.plantas.shouldContain(plantaEspecial)
