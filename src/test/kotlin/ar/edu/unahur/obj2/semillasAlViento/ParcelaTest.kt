@@ -32,8 +32,8 @@ class ParcelaTest : DescribeSpec( {
             plantaDeSoja1.parcelaTieneComplicaciones(unaParcela).shouldBeFalse()
 
         }
-        /*
-        Este test no se puede correr porque en el código no devuelve un error sino que en su lugar imprime un mensaje de error
+
+        //Este test no se puede correr porque en el código no devuelve un error sino que en su lugar imprime un mensaje de error
         it("una parcela tira error si quiere agregar una quinta planta de soja"){
             unaParcela.plantar(plantaDeSoja1)
             unaParcela.plantar(plantaDeSoja2)
@@ -45,7 +45,7 @@ class ParcelaTest : DescribeSpec( {
             }
 
         }
-        */
+
 
 
 

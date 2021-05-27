@@ -11,15 +11,11 @@ class Agricultora(val parcelas: MutableList<Parcela>) { // MINIMIZAR MUTABILIDAD
         }
     }
 
-    fun parcelasSemilleras() = //KISS = se puede simplificar
-        parcelas.filter {
-                parcela -> parcela.plantas.all {
-                planta -> planta.daSemillas()
-        }
-        }
+    fun parcelasSemilleras() = // REFACTORIZADO
+        parcelas.filter { it.esSemillera()}
 
-    fun plantarEstrategicamente(planta: Planta) { // SE PODRIA HABER RESUELTO DE FORMA MAS SIMPLE
-        val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadPlantas }!!
-        laElegida.plantas.add(planta)
+    fun plantarEstrategicamente(planta: Planta) {
+        val laElegida = parcelas.maxBy { it.cantidadMaximaPlantas() - it.cantidadDePlantas() }!!
+        laElegida.plantar(planta)  // REFACTIRIZADO
     }
 }
