@@ -12,11 +12,12 @@ class AgricultoraTest:DescribeSpec ({
         val unaParcelaGrande = Parcela(2,3,8) //5 plantas - 2 espacios
         val otraParcelaGrande = Parcela(5,4,8) //4 plantas - 2 espacio
 
-        val plantaDeSoja1 = Soja(1998,2.0,false)
-        val plantaDeSoja2 = Soja(1997,3.0,true)
-        val plantaDeSoja3 = Soja(2008,2.0,false)
-        val plantaDeSoja4 = Soja(2012,2.0,false)
-        val plantaDeSoja5 = Soja(2015,2.3,false)
+        // SE QUITA EL SETEO DE SI LA SOJA ES TRANSGENICA PARA PODER CORRER EL NUEVO TEST DESPUES DE REFACTORIZAR
+        val plantaDeSoja1 = Soja(1998,2.0)
+        val plantaDeSoja2 = Soja(1997,3.0)
+        val plantaDeSoja3 = Soja(2008,2.0)
+        val plantaDeSoja4 = Soja(2012,2.0)
+        val plantaDeSoja5 = Soja(2015,2.3)
 
         unaParcela.plantar(plantaDeSoja1)
         unaParcela.plantar(plantaDeSoja2)

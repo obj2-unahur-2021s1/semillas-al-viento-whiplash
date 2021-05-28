@@ -3,14 +3,18 @@ package ar.edu.unahur.obj2.semillasAlViento
 class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
   val plantas = mutableListOf<Planta>()
 
-  fun superficie() = ancho * largo //SIMPLICIDAD = el metodo resuelve el tema de la superficie , pero no se usa
+  fun superficie() = ancho * largo
 
   //REFACTORIZADO
   fun cantidadMaximaPlantas() =
-    if (ancho > largo) this.superficie() / 5 else this.superficie() / 3 + largo // ABSTRACCION / REUSABILIDAD= se podria haber utilizado el resultado del método superficie() para calcular ancho*largo
+    if (ancho > largo) this.superficie() / 5 else this.superficie() / 3 + largo
 
+
+    fun tieneComplicaciones() =
+        plantas.any { it.horasDeSolQueTolera() < horasSolPorDia }
 
   fun cantidadDePlantas() = plantas.size
+
 
   //REFACTORIZADO
   fun plantar(planta: Planta) {
@@ -27,12 +31,9 @@ class Parcela(val ancho: Int, val largo: Int, val horasSolPorDia: Int) {
     }
   }
 
-
   //REFACTORIZADO
   fun esSemillera(): Boolean =  plantas.all{it.daSemillas()}
 
-
-  //fun tieneComplicaciones() // este método es de parcela pero esta en planta
 
 }
 
