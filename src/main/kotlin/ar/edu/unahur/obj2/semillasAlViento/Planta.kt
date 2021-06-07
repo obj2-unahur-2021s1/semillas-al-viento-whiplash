@@ -1,39 +1,46 @@
 package ar.edu.unahur.obj2.semillasAlViento
 
-abstract class Planta(val anioObtencionSemilla: Int, var altura: Float) {
-  fun esFuerte() = this.horasDeSolQueTolera() > 10
-
-  fun parcelaTieneComplicaciones(parcela: Parcela) =
-    parcela.plantas.any { it.horasDeSolQueTolera() < parcela.horasSolPorDia }
+abstract class Planta(val anioObtencionSemilla: Int, val altura: Double) {
 
   abstract fun horasDeSolQueTolera(): Int
-  abstract fun daSemillas(): Boolean
+
+  fun esFuerte() = this.horasDeSolQueTolera() > 10
+
+  open fun daSemillas(): Boolean =  this.esFuerte()
 }
 
-class Menta(anioObtencionSemilla: Int, altura: Float) : Planta(anioObtencionSemilla, altura) {
+//SIMPLICIDAD
+class Menta(anioObtencionSemilla: Int, altura: Double) : Planta(anioObtencionSemilla, altura) { // se refactoriza de Float A double para poder correr Test
   override fun horasDeSolQueTolera() = 6
-  override fun daSemillas() = this.esFuerte() || altura > 0.4
+  override fun daSemillas() = super.daSemillas()|| altura > 0.4
 }
 
-class Soja(anioObtencionSemilla: Int, altura: Float, val esTransgenica: Boolean) : Planta(anioObtencionSemilla, altura) {
+
+open class Soja(anioObtencionSemilla: Int, altura: Double) : Planta(anioObtencionSemilla, altura) { //Se Refactoriza la altura de float a doble para poder realizar test
+
+  //REFACTORIZADO
   override fun horasDeSolQueTolera(): Int  {
-    // ¡Magia de Kotlin! El `when` es como un `if` pero más poderoso:
-    // evalúa cada línea en orden y devuelve lo que está después de la flecha.
-    val horasBase = when {
+    return when {
       altura < 0.5  -> 6
       altura < 1    -> 7
       else          -> 9
     }
-
-    return if (esTransgenica) horasBase * 2 else horasBase
   }
 
+  //REFACTORIZADO
+  override fun daSemillas(): Boolean  =
+    super.daSemillas() || (anioObtencionSemilla > 2007 && altura > 1)
 
-  override fun daSemillas(): Boolean  {
-    if (this.esTransgenica) {
-      return false
-    }
-
-    return this.esFuerte() || (this.anioObtencionSemilla > 2007 && this.altura > 1)
-  }
 }
+
+//REFACTORIZADO
+class SojaTransgenica(anioObtencionSemilla: Int, altura: Double) : Soja(anioObtencionSemilla, altura){
+
+  override fun daSemillas() = false
+  override fun horasDeSolQueTolera() = super.horasDeSolQueTolera() * 2
+
+
+
+}
+
+
